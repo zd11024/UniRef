@@ -1,0 +1,48 @@
+train_file: ['data/finetune/%s_train.json']
+val_file: ['data/finetune/%s_val.json']
+test_file: ['data/finetune/%s_test.json', 'data/finetune/%s_val.json']
+
+refcoco_data: 'data/finetune/'
+det_file: 'data/finetune/%s/dets.json'
+coco_file: 'data/finetune/%s/cocos.json'
+
+image_root: 'images/coco/'
+
+## Vision Encoder
+use_clip_vit: True
+vision_config: 'configs/config_clipvitB.json'
+image_res: 384
+patch_size: 16
+
+# use_swin: True
+# image_res: 384
+# patch_size: 32
+
+
+## Text Encoder
+use_roberta: False
+text_config: 'configs/config_bert.json'  # ['configs/config_bert.json', 'configs/config_roberta.json']
+text_encoder: 'data/bert-base-uncased'  # ['data/bert-base-uncased', 'data/roberta-base']
+
+
+## Training
+batch_size: 40
+max_tokens: 40
+
+max_words: 40  # i use 30 for 14M
+mask_prob: 0.25
+max_masks: 8
+mask_whole_word: True
+skipgram_prb: 0.2
+skipgram_size: 3
+
+## Other Settings
+optimizer: {opt: adamW, lr: 1e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: linear, lr: 1e-5, epochs: 10, num_warmup_steps: 0.1}
+
+hflip_mode: 2
+use_new_segment: False
+region_threshold: 0.3
+p_weight: 1
+detach_predictor: 0
+pred_layers: '11'
