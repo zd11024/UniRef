@@ -4,7 +4,7 @@ from models.xvlm import load_pretrained
 from typing import Optional, Tuple
 from models import XVLMBase, build_mlp
 
-from transformers import BertPreTrainedModel, generation_utils
+from transformers import BertPreTrainedModel
 from transformers.file_utils import ModelOutput
 
 
